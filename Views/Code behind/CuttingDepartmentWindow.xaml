@@ -1,0 +1,121 @@
+﻿<Window x:Class="Factory.CuttingDepartmentWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:Factory"
+            mc:Ignorable="d"
+            Icon="Pictures\ICOFactory.ico"
+            Title="Cutting department" Height="450" Width="800" WindowStartupLocation="CenterScreen" MinHeight="450" MinWidth="800">
+    <Grid Background="Black">
+        <Border CornerRadius="15" BorderThickness="4" Background="#FF85FF43" BorderBrush="Black" >
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Style="{DynamicResource TimeBorder}" BorderThickness="3" Grid.Column="1" Grid.Row="0" Margin="5,3,60,3" CornerRadius="5" HorizontalAlignment="Right">
+                    <TextBlock Style="{DynamicResource TimetextBlock}" Text="{Binding ActualTime, StringFormat= HH:mm:ss}"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="5" Grid.Column="1" Grid.Row="0" Margin="5,3,5,3" CornerRadius="5" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="40" Height="40">
+                    <Image Name="closeImage" Source="Pictures\back.jpg" Stretch="Fill" Grid.Column="1" Grid.Row="0" />
+                </Border>
+                <Button Style="{DynamicResource OpenButton}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="40" Opacity="0" Margin="0,3,3.2,41.8" Grid.RowSpan="2" Click="CloseButton_Click" Height="40" />
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="3,6,0,6" Background="#FF85FF43" Grid.RowSpan="2">
+                    <Border  Margin="3,4,3,3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                        <Button Content="Contracts" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="ContractsCuttingDepartmentButton_Click"/>
+                    </Border>
+                    <Border  Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                        <Button Content="Order material" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="OrderMaterialButton_Click"/>
+                    </Border>
+                    <Border  Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                        <Button Content="Employees" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="EmployeesButton_Click"/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="5" Grid.Column="1" Grid.Row="0" Margin="5,39,5,3" CornerRadius="5"   VerticalAlignment="Center" Width="140" Height="150" Background="White">
+                        <Image Name="OverviewImage" Source="Pictures\Overview.png" Stretch="Fill" Grid.Column="1" Grid.Row="0" />
+                    </Border>
+                </StackPanel>
+                <Button Style="{DynamicResource OpenButton}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="140" Opacity="0" Margin="0,86,0,0" Grid.RowSpan="2" Click="OverviewButton_Click" Height="150" />
+                <Border Grid.Column="1" Grid.Row="1" Background="#FFC9F9A1" BorderBrush="Black" BorderThickness="5" CornerRadius="6">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Column="0" Grid.Row="1" Margin="3" CornerRadius="5" Background="Yellow" BorderBrush="Black" BorderThickness="3">
+                            <TextBlock Text="Contracts" FontSize="15" FontWeight="Black" Margin="2" TextAlignment="Center" />
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="1" Margin="3" CornerRadius="5" Background="Yellow" BorderBrush="Black" BorderThickness="3">
+                            <TextBlock Text="Order material" FontSize="15" FontWeight="Black" Margin="2" TextAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Column="2" Grid.Row="1" Margin="3" CornerRadius="5" Background="Yellow" BorderBrush="Black" BorderThickness="3">
+                            <TextBlock Text="Employees" FontSize="15" FontWeight="Black" Margin="2" TextAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Column="0" Grid.Row="2" Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <ListBox Name="contracsListBox"  FontSize="15" FontWeight="Black" Margin="2" BorderBrush="White" ItemsSource="{Binding VMContractCollection}" SelectionChanged="ContracsListBox_SelectionChanged"/>
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="2" Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <ListBox Name="orderMaterialListBox"  FontSize="15" FontWeight="Black" Margin="2" BorderBrush="White" ItemsSource="{Binding VMMaterialCollection}"/>
+                        </Border>
+                        <Border Grid.Column="2" Grid.Row="2" Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <ListBox Name="employeesListBox"  FontSize="15" FontWeight="Black" Margin="2" BorderBrush="White" ItemsSource="{Binding VMEmployeeCollection}"/>
+                        </Border>
+                        <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Background="Black" CornerRadius="4" Margin="4">
+                            <Grid Background="Yellow" Margin="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                </Grid.RowDefinitions>
+                                <Border Style="{DynamicResource ListBorder}" Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="4">
+                                    <Grid Background="White" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Money on account:" Grid.Row="0" FontSize="15" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"  />
+                                        <TextBlock Style="{DynamicResource LListTextBlock}" Text="{Binding VMOverview.MoneyOnAccount, StringFormat={}{0:0.#}}" Grid.Row="1" HorizontalAlignment="Center" FontSize="20"/>
+                                    </Grid>
+                                </Border>
+                                <Border Style="{DynamicResource ListBorder}" Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="4">
+                                    <Grid >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Number of orders:"  Grid.Row="0" FontSize="15" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                        <TextBlock Style="{DynamicResource LListTextBlock}" Text="{Binding VMOverview.NumberOfOrders}" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" />
+                                    </Grid>
+                                </Border>
+                                <Border Style="{DynamicResource ListBorder}" Grid.Column="3" BorderBrush="Black" BorderThickness="2" Margin="4">
+                                    <Grid >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Number of employees:" Grid.Row="0" FontSize="15" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                        <TextBlock Style="{DynamicResource LListTextBlock}" Text="{Binding VMOverview.NumberOfEmployee}" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
