@@ -1,0 +1,100 @@
+﻿<Window x:Class="Factory.OverviewWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:Factory"
+            mc:Ignorable="d"
+            Title="Overview" Height="450" Width="900" WindowStartupLocation="CenterScreen" MinHeight="450" MinWidth="900" MaxHeight="450" MaxWidth="900">
+    <Grid Background="Black">
+        <Border CornerRadius="15" BorderThickness="3" Background="#FF85FF43" BorderBrush="Black">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="46"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+                <Border Style="{DynamicResource TimeBorder}" BorderThickness="3" Grid.Column="2" Grid.Row="0" Margin="5,3,60,3" CornerRadius="5" HorizontalAlignment="Right">
+                    <TextBlock Style="{DynamicResource TimetextBlock}" Text="{Binding ActualTime, StringFormat= HH:mm:ss}"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="5" Grid.Column="2" Grid.Row="0" Margin="5,3,5,3" CornerRadius="5" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="40" Height="40">
+                    <Image Name="closeImage" Source="Pictures\back.jpg" Stretch="Fill" Grid.Column="1" Grid.Row="0" />
+                </Border>
+                <Button Style="{DynamicResource OpenButton}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="40" Opacity="0" Margin="0,3,5.2,0" Click="CloseButton_Click" Height="40" />
+                <Border  Margin="3" CornerRadius="5" Background="#FFC9F9A1" BorderBrush="Black" BorderThickness="3" Grid.RowSpan="2" Height="196" VerticalAlignment="Top">
+                    <StackPanel  Margin="3" Background="#FFC9F9A1" >
+                        <Border  Margin="3,7,3,3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <Button Content="Transactions" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="OverviewButton_Click"/>
+                        </Border>
+                        <Border  Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <Button Content="Contracts" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="ContractsButton_Click"/>
+                        </Border>
+                        <Border  Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <Button Content="Materials" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="MaterialButton_Click"/>
+                        </Border>
+                        <Border  Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3">
+                            <Button Content="Employees" Height="30" FontSize="16" FontWeight="Black" Background="White" Click="EmployeesButton_Click"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                <StackPanel Grid.Column="1" Grid.Row="0" Margin="3,0,0,3" Background="#FF85FF43" Grid.RowSpan="2">
+                    <Border  Margin="3" CornerRadius="5" Background="#FFC9F9A1" BorderBrush="Black" BorderThickness="3">
+                        <StackPanel>
+                            <RadioButton Name="classicOverviewRadiobutton" Content="Classic overview" IsChecked="True" GroupName="TimeRadioButton" Checked="ClasicRadioButton"/>
+                            <Border Style="{DynamicResource ListBorder}"  Background="#FFE7E7E7" CornerRadius="8" Margin="6" Height="40">
+                                <ComboBox Name="classicTimeComboBox" Style="{DynamicResource ListComboBox}" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ClassicTimeComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="Week" />
+                                    <ComboBoxItem Content="Month" />
+                                    <ComboBoxItem Content="Year" />
+                                    <ComboBoxItem Content="All" />
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="1" Background="#FFC9F9A1" BorderBrush="Black" BorderThickness="3" CornerRadius="6">
+                        <StackPanel>
+                            <RadioButton Content="Specific overwiew" GroupName="TimeRadioButton" Checked="ClasicRadioButton"/>
+                            <Border Style="{DynamicResource ListBorder}"  Background="#FFE7E7E7" CornerRadius="8" Margin="6" Height="40">
+                                <ComboBox Name="yearsComboBox" Style="{DynamicResource ListComboBox}" SelectedIndex="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="YearComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="2022" />
+                                    <ComboBoxItem Content="2021" />
+                                    <ComboBoxItem Content="2020" />
+                                    <ComboBoxItem Content="2019" />
+                                    <ComboBoxItem Content="2018" />
+                                    <ComboBoxItem Content="2017" />
+                                    <ComboBoxItem Content="2016" />
+                                </ComboBox>
+                            </Border>
+                            <Border Style="{DynamicResource ListBorder}"  Background="#FFE7E7E7" CornerRadius="8" Margin="6,0,6,6" Height="40">
+                                <ComboBox Name="monthsComboBox" Style="{DynamicResource ListComboBox}" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="MonthsComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="January" />
+                                    <ComboBoxItem Content="February" />
+                                    <ComboBoxItem Content="March" />
+                                    <ComboBoxItem Content="April" />
+                                    <ComboBoxItem Content="May" />
+                                    <ComboBoxItem Content="June" />
+                                    <ComboBoxItem Content="July" />
+                                    <ComboBoxItem Content="August" />
+                                    <ComboBoxItem Content="September" />
+                                    <ComboBoxItem Content="October" />
+                                    <ComboBoxItem Content="November" />
+                                    <ComboBoxItem Content="December" />
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Border Grid.Column="0" Grid.Row="2" Margin="3" CornerRadius="5" Background="White" BorderBrush="Black" BorderThickness="3" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="200">
+                    <ListBox Name="SelectedListBox"  FontSize="15" FontWeight="Black" Margin="2" BorderBrush="White" SelectionChanged="SelectedListBox_SelectionChanged" ItemsSource="{Binding VMListBoxCollection}"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="1" Background="#FFC9F9A1"    Margin="3" CornerRadius="5"  BorderBrush="Black" BorderThickness="3">
+                    <Canvas Name="OverviewCanvas"/>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
